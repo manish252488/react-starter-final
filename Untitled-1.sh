@@ -19,3 +19,14 @@ net.ipv6.conf.all.disable_ipv6=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.lo.disable_ipv6=1
 sysctl -p
+
+
+
+#setting up open vpn
+
+sudo apt-get install network-manager-openvpn
+sudo apt-get install network-manager-openvpn-gnome
+sudo apt-get install openvpn
+mv config-file /etc/openvpn/config-file;
+mv cert-file /etc/openvpn/cert-file
+    
