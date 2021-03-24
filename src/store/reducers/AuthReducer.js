@@ -7,7 +7,7 @@ const initialState = {
   },
   token: "wertyui4567890jdhasdfu8cn489c439c83c",
   isAuthenticated: false,
-  role: "",
+  role: "guest",
 };
 function AuthReducer(state = initialState, action) {
   switch (action.type) {

@@ -1,18 +1,26 @@
 import React from "react";
 import "./index.less";
-import { useTranslation } from "react-i18next";
+import { AppBar, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Toolbar } from "@material-ui/core";
 const Home = (props) => {
-  const { t, i18n } = useTranslation();
   return (
-    <div
-      onClick={() =>
-        i18n.language === "en"
-          ? i18n.changeLanguage("ge")
-          : i18n.changeLanguage("en")
-      }
-    >
-      {t("home")}
-    </div>
+   <React.Fragment>
+     <AppBar static>
+       <Toolbar>
+       </Toolbar>
+     </AppBar>
+     <Card>
+       <CardHeader>header</CardHeader>
+       <CardContent>
+         some content
+       </CardContent>
+       <CardActions>
+         <Button>click</Button>
+       </CardActions>
+       <CardActionArea>
+         <Button>click</Button>
+       </CardActionArea>
+     </Card>
+   </React.Fragment>
   );
 };
 export default Home;

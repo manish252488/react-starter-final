@@ -6,8 +6,7 @@ import routesConfig from "./RoutesConfig";
 import { generateRoutesFromConfigs } from "./RoutesUtils";
 
 export default function AppRoute(props) {
-  const isAuthenticated = useSelector(({ Auth }) =>
-    Auth.isAuthenticated ? Auth?.isAuthenticated : false
+  const isAuthenticated = useSelector(({ Auth }) =>Auth?.isAuthenticated 
   );
   const auth = useSelector(({ Auth }) =>
     isAuthenticated ? Auth.role : authRoles.guest[0]
