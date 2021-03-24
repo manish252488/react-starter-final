@@ -15,15 +15,20 @@
 @gray: #ddd;
 @success: green;
 @failed: pink;
-@small: 375px;
-@mobile: 767px;
 
-@content-width: 1000px;
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+@fontWeightSecondary: 500;
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
 
-@mixin clearfix() {
-  &::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
+@phone: ~"only screen and (max-width: @{screen-xs-min})";
+@phone-strict: ~"only screen and (max-width: @{screen-xs-max})";
+@tablet: ~"only screen and (min-width: @{screen-sm-min})";
+@tablet-strict: ~"only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+@desktop: ~"only screen and (min-width: @{screen-md-min})";
+@desktop-strict: ~"only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+@large: ~"only screen and (min-width: @{screen-lg-min})";
