@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../store";
+import constants from '../config/constants';
 const env = process.env.REACT_APP_NODE_ENV;
 const devUrl = "http://localhost:8000";
 const testUrl = "http://domain.com";
@@ -14,7 +15,7 @@ const url =
     : null;
 export const client = axios.create({
   headers: {
-    "x-api-key": "some-api-key",
+    "x-api-key": constants.api_key,
   },
   timeout: 50000,
   baseURL: url,
