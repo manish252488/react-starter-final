@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./index.less";
 import { Button, Card, CardActions, CardContent, CardHeader, TextField } from "@material-ui/core";
-import AppBaseScreen from "../common/AppBaseScreen";
+import AppBaseScreen from "../common/layout/user/AppBaseScreen";
 const Home = (props) => {
   const [text,setText]=useState("");
-  const [error,setError]=useState({
+  const [error,]=useState({
     status: false,
     message: ""
   })
@@ -12,7 +12,7 @@ const Home = (props) => {
     setText(val)
   }
   return (
-  <AppBaseScreen showHeader={false}>
+  <AppBaseScreen>
      <Card className="chat-card">
        <CardHeader>header</CardHeader>
        <CardContent>

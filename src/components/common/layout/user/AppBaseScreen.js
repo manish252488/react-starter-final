@@ -1,12 +1,14 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import React from 'react';
-import './index.less';
+import '../index.less';
 import PropTypes from 'prop-types';
+import Logo from '../../Logo';
 const AppBaseScreen = props => {
     const { children,footerItems,toolbarLeftItem, toolbarRightItem, showHeader} = props
     return <React.Fragment>
         {showHeader && <AppBar>
             <Toolbar>
+                <Logo/>
                 {toolbarLeftItem}
                 {toolbarRightItem}
             </Toolbar>

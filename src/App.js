@@ -8,13 +8,15 @@ import routesConfig from "./navigation/RoutesConfig";
 import "./App.less";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from './theme'
+import { CssBaseline } from "@material-ui/core";
 function App() {
   return (
     <AppContext.Provider value={routesConfig}>
       <Provider store={store}>
         <Router history={history}>
           <ThemeProvider theme={theme}>
-          <AppRoute />
+            <CssBaseline/>
+          <AppRoute routes={routesConfig}/>
           </ThemeProvider>
         </Router>
       </Provider>

@@ -1,6 +1,5 @@
+import AuthComponent from ".";
 import authRoles from "../../config/authRoles";
-import Login from "./Login";
-import SignUp from "./Signup";
 /**
  *      {
  *        path: '/',
@@ -13,12 +12,12 @@ const AuthRoutes = {
   routes: [
     {
       path: "/login",
-      component: Login,
+      component: AuthComponent,
       exact: true,
     },
     {
       path: "/sign-up",
-      component: SignUp,
+      component: AuthComponent,
       exact: true,
     },
   ],

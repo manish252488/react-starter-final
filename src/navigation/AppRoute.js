@@ -1,17 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import authRoles from "../config/authRoles";
-import routesConfig from "./RoutesConfig";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { generateRoutesFromConfigs } from "./RoutesUtils";
-
+import PropTypes from 'prop-types'
 export default function AppRoute(props) {
   const isAuthenticated = useSelector(({ Auth }) =>Auth?.isAuthenticated 
   );
   const auth = useSelector(({ Auth }) =>
-    isAuthenticated ? Auth.role : authRoles.guest[0]
+    isAuthenticated ? Auth.role : "guest"
   );
-  const config = [...generateRoutesFromConfigs(routesConfig, auth)];
+  console.log(auth,isAuthenticated)
+  const config = [...generateRoutesFromConfigs(props.routes, auth)];
   return (
     <Switch>
       {config.map((value, index) => (
@@ -22,6 +21,18 @@ export default function AppRoute(props) {
           component={value.component}
         />
       ))}
+      <Route 
+      key={"default"}
+      exact
+      path="/"
+      component={()=> <Redirect to={!isAuthenticated?"/login":"/"}/>}/>
+      <Route 
+      key ={"routes404"}
+      component={()=><Redirect to="/404"/>}/>
     </Switch>
   );
+}
+
+AppRoute.propTypes={
+  routes: PropTypes.array.isRequired
 }

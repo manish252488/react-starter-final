@@ -11,9 +11,9 @@
  *
  */
 
-const authRoles = {
-  user: ["user"], // the pages with user config can be accessed by roles: ["user"]
-  user2: ["user2"],
-  guest: ["guest", "user", "user2"], // the pages with guest config can be accessed by roles: [user,guest,admin]
+const authRoles = {// the pages with user config can be accessed by roles: ["user"]
+  admin: ["admin"],
+  user: ["user"], // the pages with guest config can be accessed by roles: [user,guest,admin]
+  guest: ["admin","guest","user"]
 };
 export default authRoles;
