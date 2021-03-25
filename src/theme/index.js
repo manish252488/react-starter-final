@@ -31,23 +31,28 @@ const theme = createMuiTheme({
   typography: {
     h1:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     },
     h2:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     },
     h3:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     },
     h4:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     },
     h5:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     },
     h6:{
        fontFamily: "Raleway, Arial",
+       textTransform: 'capitalize'
     }
-   
   },
   overrides: {
     MuiCssBaseline: {
