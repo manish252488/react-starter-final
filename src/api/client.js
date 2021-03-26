@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 import constants from '../config/constants';
 const env = process.env.REACT_APP_NODE_ENV;
-const devUrl = "http://localhost:8000";
+const devUrl = "http://localhost:3001";
 const testUrl = "http://domain.com";
 const prodUrl = "https://domain.com";
 const url =
@@ -24,7 +24,6 @@ export const client = axios.create({
 client.interceptors.request.use(
   (config) => {
     let token = store.getState().Auth.token;
-    console.log(config.url, token);
     if (token && token !== "") {
       config.headers.Authorization = token;
     }

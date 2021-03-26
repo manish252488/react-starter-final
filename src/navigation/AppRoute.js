@@ -9,7 +9,6 @@ export default function AppRoute(props) {
   const auth = useSelector(({ Auth }) =>
     isAuthenticated ? Auth.role : "guest"
   );
-  console.log(auth,isAuthenticated)
   const config = [...generateRoutesFromConfigs(props.routes, auth)];
   return (
     <Switch>
