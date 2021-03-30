@@ -7,33 +7,36 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import PropTypes from "prop-types";
-export default Table = (props) => {
-  const { columns, dataSource } = props;
+import { Map } from "react-lodash";
+const CommonTable = (props) => {
+  const { columns, datasource } = props;
 
   return (
     <Table>
       <TableHead>
-        {columns.map((val, index) => (
-          <TableCell key={`${val}-${index}`} align={index === 0 ? "left" : "right"}>{val}</TableCell>
-        ))}
+        <TableRow>
+        <Map
+          collection={columns}
+          iteratee={(obj, key) => (
+            <TableCell style={{fontWeight: 700}} key={`${obj}-${key}`} align="left">
+              {obj}
+            </TableCell>
+          )}
+        />
+        </TableRow>
       </TableHead>
       <TableBody>
-        <TableRow>
-          <TableCell>Dessert (100g serving)</TableCell>
-          <TableCell align="right">Calories</TableCell>
-          <TableCell align="right">Fat&nbsp;(g)</TableCell>
-          <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-          <TableCell align="right">Protein&nbsp;(g)</TableCell>
-        </TableRow>
-        {
-            dataSource.map((data,index)=>(
-                <TableRow key={index}>
-                    {
-                        
-                    }
-                </TableRow>
-            ))
-        }
+        {datasource.map((data,index) => (
+          <TableRow key={index}>
+          <Map
+          collection={columns}
+          iteratee={(obj, key) => (
+            <TableCell style={{textTransform: 'capitalize'}} key={`${obj}-${key}`} align="left">
+              {data[key]}
+            </TableCell>
+          )}
+        />
+        </TableRow>))}
       </TableBody>
     </Table>
   );
@@ -41,19 +44,20 @@ export default Table = (props) => {
 
 Table.propTypes = {
   columns: PropTypes.array,
-  dataSource: PropTypes.array,
+  datasource: PropTypes.array,
 };
 
 Table.defaultProps = {
   columns: [],
-  dataSource: [],
+  datasource: [],
 };
+export default CommonTable;
 // data source
 
 /**
- * 
+ *
  * columns: [column1,column2,....],
- * 
+ *
  * columnData:[
  * [
  * column1: "data",
@@ -62,6 +66,6 @@ Table.defaultProps = {
  * column(n): "data"
  * ],.....
  * ]
- * 
+ *
  *
  */

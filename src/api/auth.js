@@ -1,10 +1,10 @@
 import { client } from "./client";
 
 const Auth = {
-  login: (data) => client.post("/auth/login", data),
-  signup: (data) => client.post("/auth/signup", data),
-  checkAuth: () => client.get("/auth/check"),
-  signOut: () => client.get("/auth/signout"),
+  login: (data) => client.post("/users/login", data),
+  signup: (data) => client.post("/users/create", data),
+  checkAuth: () => client.get("/users/check"),
+  signOut: () => Promise.resolve(),
 };
 
 export default Auth;

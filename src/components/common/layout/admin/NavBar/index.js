@@ -63,7 +63,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           src={user.avatar}
           to="/app/account"
         />
-        <Typography className={classes.name} color="primary" variant="h3">
+        <Typography className={classes.name} color="primary" variant="h5">
           {user.name}
         </Typography>
         <Typography color="textSecondary" variant="body2">

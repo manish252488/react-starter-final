@@ -1,14 +1,10 @@
 import { SET_USER, SIGN_OUT } from "../actions/actionTypes";
 
 const initialState = {
-  user: {
-    name: "john doe",
-    email: "some@domain.com",
-    picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjDg0G8G1Z4wvLinTJv9_lpJJEADHPro-u6jf6txPT4GktEUyDNeQBp0Ub9lLXXBDV54c&usqp=CAU',
-  },
-  token: "wertyui4567890jdhasdfu8cn489c439c83c",
-  isAuthenticated: true  ,
-  role: "user",
+  user: {},
+  token: "",
+  isAuthenticated: false  ,
+  role: "guest",
 };
 function AuthReducer(state = initialState, action) {
   switch (action.type) {
@@ -16,9 +12,9 @@ function AuthReducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload.user,
-        token: action.payload.token,
+        token: action.payload.token? action.payload.token : state.token,
         isAuthenticated: true,
-        role: action.payload.role,
+        role: action.payload.user.roleId,
       };
     case SIGN_OUT:
       return {

@@ -11,6 +11,8 @@ import './index.less'
 import { Card, CardContent, Typography } from "@material-ui/core";
 import Logo from "../common/Logo";
 import Bubbles from "../common/bubbles/Bubbles";
+import { useSelector } from "react-redux";
+import History from "../../@history";
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -22,7 +24,10 @@ function a11yProps(index) {
 export default function AuthComponent() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-
+  const isAuthenticated = useSelector(({Auth})=>Auth.isAuthenticated);
+  if(isAuthenticated){
+    History.push('/')
+  }
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

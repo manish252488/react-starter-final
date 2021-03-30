@@ -42,8 +42,36 @@
 .MuiTab-root {
      min-width: auto !important;
 }
+.loginPanel,.signup-form{
+    .MuiTextField-root,.MuiButton-root{
+        margin-top: 20px;
+    }
+}
+
 @media @phone {
     .auth-page {
+        .auth-image{
+            width:100% !important;
+            height: 25%;
+        }
+        .auth-card {
+            flex-direction: column;
+        }
+         .auth-card-content{
+            width: auto !important;
+            .right-content{
+                width: 100% !important;
+            }
+         }
+    }
+}
+
+@media @tablet-strict {
+      .auth-page {
+          .auth-image{
+            width:100% !important;
+            height: 30%;
+        }
         .auth-card {
             flex-direction: column;
         }

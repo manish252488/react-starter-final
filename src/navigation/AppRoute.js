@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { generateRoutesFromConfigs } from "./RoutesUtils";
@@ -9,7 +9,10 @@ export default function AppRoute(props) {
   const auth = useSelector(({ Auth }) =>
     isAuthenticated ? Auth.role : "guest"
   );
-  const config = [...generateRoutesFromConfigs(props.routes, auth)];
+  const [config,setConfig]=useState([...generateRoutesFromConfigs(props.routes, auth)])
+  useEffect(()=> {
+    setConfig([...generateRoutesFromConfigs(props.routes, auth)])
+  },[auth, props.routes])
   return (
     <Switch>
       {config.map((value, index) => (

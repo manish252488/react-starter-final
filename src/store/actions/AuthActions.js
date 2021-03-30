@@ -6,9 +6,11 @@ export const signUp = (data, onSuccess, onFailure) => (dispatch) => {
     .then((data) => {
       dispatch({
         type: SET_USER,
-        payload: data,
+        payload: data.data,
       });
-      if (isFunction(onSuccess)) onSuccess();
+      if (isFunction(onSuccess)) {
+        onSuccess()
+      }
     })
     .catch((err) => {
       console.log("error sign up", err);
@@ -23,11 +25,13 @@ export const login = (
 ) => (dispatch) => {
   Auth.login(data)
     .then((data) => {
+      if (isFunction(onSuccess)) {
+        onSuccess();
+      }
       dispatch({
         type: SET_USER,
-        payload: data,
+        payload: data.data,
       });
-      if (isFunction(onSuccess)) onSuccess();
     })
     .catch((err) => {
       console.log("error sign up", err);
@@ -40,7 +44,7 @@ export const checkJWT = (onSuccess, onFailure) => (dispatch) => {
     .then((data) => {
       dispatch({
         type: SET_USER,
-        payload: data,
+        payload: data.data,
       });
       if (isFunction(onSuccess)) onSuccess();
     })
