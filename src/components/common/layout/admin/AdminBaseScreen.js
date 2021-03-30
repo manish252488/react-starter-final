@@ -42,6 +42,7 @@ const AdminBaseScreen = (props) => {
  const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(checkJWT(null,onFailure))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   const onFailure = () => {
     History.push("/login")

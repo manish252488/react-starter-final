@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Chip } from '@material-ui/core';
 import { PeopleOutlined } from '@material-ui/icons';
 import moment from 'moment';
