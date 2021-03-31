@@ -1,6 +1,8 @@
 import {
   Button,
+  Checkbox,
   CircularProgress,
+  FormControlLabel,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -38,6 +40,7 @@ class SignUp extends React.Component {
         password2: "",
       },
       loading: false,
+      checked: false
     };
   }
   onChange = (key, value) => {
@@ -71,53 +74,59 @@ class SignUp extends React.Component {
       err.password2 = "password cannot be empty!";
       flag = false;
     }
-    if(user.password1 !== user.password2){
-      err.main = "passwords do not match!"
+    if (user.password1 !== user.password2) {
+      err.main = "passwords do not match!";
       flag = false;
     }
     this.setState({ errors: err });
     return flag;
   };
-  onSuccess=(path)=>{
-    this.setState({loading:false})
-    History.push("/")
-  }
-  onFailure=(msg)=>{
-    this.setState(prev=> {
+  onSuccess = (path) => {
+    this.setState({ loading: false });
+    History.push("/");
+  };
+  onFailure = (msg) => {
+    this.setState((prev) => {
       return {
         ...prev,
         loading: false,
         errors: {
           ...prev.errors,
-          main: msg
-        }
-      }
-    })
-  }
+          main: msg,
+        },
+      };
+    });
+  };
   register = () => {
     const { user } = this.state;
-    this.setState({loading: true, errors: {
+    this.setState({
+      loading: true,
+      errors: {
         main: "",
         name: "",
         email: "",
         password1: "",
         password2: "",
-      }})
+      },
+    });
     if (this.validate()) {
       let data = {
         name: user.name,
         password: user.password1,
         email: user.email,
         roleId: 1,
-        source: 'form'
+        source: "form",
       };
       this.props.register(data, this.onSuccess, this.onFailure);
-    }else {
-      this.setState({loading: false})
+    } else {
+      this.setState({ loading: false });
     }
   };
+  handleChangeCheckbox = (e) => {
+    this.setState({checked: e.target.checked})
+  }
   render() {
-    const { user, errors, loading } = this.state;
+    const { user, errors, loading,checked } = this.state;
     return (
       <div className="signup-form">
         <Typography color="error">{errors.main}</Typography>
@@ -159,6 +168,10 @@ class SignUp extends React.Component {
           onChange={(ev) => this.onChange("password2", ev.target.value)}
           helperText={errors.password2}
         />
+        <FormControlLabel
+          control={<Checkbox  defaultChecked={checked} onChange={this.handleChangeCheckbox}/>}
+          label="I want to receive inspiration, marketing promotions and updates via email."
+        />
         <Button
           startIcon={
             loading && <CircularProgress size={20} color="secondary" />
@@ -167,6 +180,7 @@ class SignUp extends React.Component {
           color="primary"
           onClick={this.register}
           fullWidth
+          disabled={!checked}
         >
           Register
         </Button>

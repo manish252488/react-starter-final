@@ -7,6 +7,18 @@ import { checkJWT } from "../../../../store/actions";
 import { useDispatch } from "react-redux";
 import SignOut from "../../../auth/SignOut";
 import InputIcon from "@material-ui/icons/Input";
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const AppBaseScreen = (props) => {
   const {
@@ -30,14 +42,15 @@ const AppBaseScreen = (props) => {
           <Toolbar>
             <Logo />
             {toolbarLeftItem}
-            <div style={{flexGrow: 1}}>
-            {toolbarRightItem}
+            <div style={{ flexGrow: 1 }}>
+              {toolbarRightItem}
+             
             </div>
              <SignOut>
-          <IconButton color="inherit">
-            <InputIcon />
-          </IconButton>
-        </SignOut>
+                <IconButton color="inherit">
+                  <InputIcon  color="secondary"/>
+                </IconButton>
+              </SignOut>
           </Toolbar>
         </AppBar>
       )}

@@ -13,6 +13,7 @@ import Logo from "../common/Logo";
 import Bubbles from "../common/bubbles/Bubbles";
 import { useSelector } from "react-redux";
 import History from "../../@history";
+import { Lock, PersonAdd } from "@material-ui/icons";
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -46,8 +47,8 @@ export default function AuthComponent() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Login" {...a11yProps(0)} />
-          <Tab label="Sign Up" {...a11yProps(1)} />
+          <Tab icon={<Lock/>} label="Login" {...a11yProps(0)} />
+          <Tab icon={<PersonAdd/>} label="Sign Up" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <SwipeableViews

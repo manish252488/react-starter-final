@@ -1,14 +1,21 @@
-import { Button, CircularProgress, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+  Link
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./index.less";
-import * as actions from '../../store/actions';
-import History from '../../@history';
+import * as actions from "../../store/actions";
+import History from "../../@history";
 const Login = (props) => {
   const [email, changeEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -16,38 +23,44 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const validate = () => {
     let flag = true;
-    let err ={};
-    setErrors({email: "", password: ""})
+    let err = {};
+    setErrors({ email: "", password: "" });
     if (email === "") {
-      err.email =  "email cannot be empty!"
+      err.email = "email cannot be empty!";
       flag = false;
     }
     if (password === "") {
-      err.password="password cannot be empty!"
+      err.password = "password cannot be empty!";
       flag = false;
     }
-    setErrors({...err});
+    setErrors({ ...err });
     return flag;
   };
-  const onSuccess=(path) => {
+  const onSuccess = (path) => {
     setLoading(false);
-    History.push("/")
-  }
-  const onFailure=(error)=> {
-    setLoading(false)
-    setError(error)
-  }
+    History.push("/");
+  };
+  const onFailure = (error) => {
+    setLoading(false);
+    setError(error);
+  };
   const login = () => {
     setError("");
 
     if (validate()) {
       setLoading(true);
-      dispatch(actions.login({email: email, password: password}, onSuccess, onFailure))
+      dispatch(
+        actions.login(
+          { email: email, password: password },
+          onSuccess,
+          onFailure
+        )
+      );
     }
   };
   return (
     <div className="loginPanel">
-    <Typography color="error">{error}</Typography>
+      <Typography color="error">{error}</Typography>
       <TextField
         type="email"
         variant="outlined"
@@ -68,9 +81,23 @@ const Login = (props) => {
         onChange={(ev) => setPassword(ev.target.value)}
         helperText={errors.password}
       />
-      <Button startIcon={loading && <CircularProgress size={20} color="secondary" />} variant="contained" color="primary" onClick={login} fullWidth>
+      <Button
+        startIcon={loading && <CircularProgress size={20} color="secondary" />}
+        variant="contained"
+        color="primary"
+        onClick={login}
+        fullWidth
+      >
         Login
       </Button>
+
+      <Grid container>
+        <Grid item xs>
+          <Link href="#" color="primary" variant="body2">
+            Forgot password?
+          </Link>
+        </Grid>
+      </Grid>
     </div>
   );
 };

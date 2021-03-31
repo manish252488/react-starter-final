@@ -83,7 +83,7 @@ export default function ChatBot(props) {
         onClick={handleOpen}
         className="fab-custom"
       >
-        <MessageOutlined />
+        <MessageOutlined color="secondary" />
       </Fab>
       <Popover
         className="menu-card"
@@ -154,7 +154,7 @@ export default function ChatBot(props) {
               size="large"
               color="primary"
               variant="contained"
-              endIcon={<SendOutlined />}
+              endIcon={<SendOutlined color="secondary"/>}
               onClick={send}
             >
               send
