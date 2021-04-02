@@ -38,21 +38,21 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
         <Box flexGrow={1} />
         <IconButton color="inherit">
           <Badge
-            badgeContent={notifications.length}
-            color="primary"
+            badgeContent={1}
+            color="secondary"
             variant="dot"
           >
-            <NotificationsIcon />
+            <NotificationsIcon color="secondary"/>
           </Badge>
         </IconButton>
         <SignOut>
           <IconButton color="inherit">
-            <InputIcon />
+            <InputIcon color="secondary"/>
           </IconButton>
         </SignOut>
         <Hidden lgUp>
           <IconButton color="inherit" onClick={onMobileNavOpen}>
-            <MenuIcon />
+            <MenuIcon color="secondary"/>
           </IconButton>
         </Hidden>
       </Toolbar>

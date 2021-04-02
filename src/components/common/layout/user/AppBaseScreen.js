@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar } from "@material-ui/core";
+import { AppBar, IconButton, Link, Toolbar, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import "../index.less";
 import PropTypes from "prop-types";
@@ -9,9 +9,9 @@ import SignOut from "../../../auth/SignOut";
 import InputIcon from "@material-ui/icons/Input";
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="secondary" href="https://material-ui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -56,7 +56,11 @@ const AppBaseScreen = (props) => {
       )}
       <div className="body">{children}</div>
       {/*    Footer sett*/}
-      {footerItems && footerItems}
+      <div className="footer">
+        {footerItems && footerItems}
+        <Copyright/>
+      </div>
+      
     </React.Fragment>
   );
 };

@@ -5,7 +5,7 @@ import TopBar from './TopBar';
 import { checkJWT } from '../../../../store/actions';
 import { useDispatch } from 'react-redux';
 import History from '../../../../@history';
-
+import '../index.less'
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -58,6 +58,7 @@ const AdminBaseScreen = (props) => {
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             {props?.children}
+            {console.log(props.children)}
           </div>
         </div>
       </div>
