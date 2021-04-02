@@ -16,6 +16,7 @@ import NavItem from "./NavItem";
 import { useSelector } from "react-redux";
 import {Logo} from '../../../../../assets';
 import items from "../../../../admin/adminNavItems";
+import Copyright from "../../../Copyright";
 
 const useStyles = makeStyles((theme) => ({
   mobileDrawer: {
@@ -63,7 +64,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           src={user.avatar}
           to="/app/account"
         />
-        <Typography className={classes.name} color="primary" variant="h5">
+        <Typography className={classes.name} color="secondary" variant="h5">
           {user.name}
         </Typography>
         <Typography color="textSecondary" variant="body2">
@@ -88,6 +89,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </List>
       </Box>
       <Box flexGrow={1} />
+      <Copyright color="primary"/>
     </Box>
   );
 

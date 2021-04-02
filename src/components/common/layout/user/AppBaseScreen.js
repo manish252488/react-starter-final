@@ -1,4 +1,8 @@
-import { AppBar, IconButton, Link, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  IconButton,
+  Toolbar,
+} from "@material-ui/core";
 import React, { useEffect } from "react";
 import "../index.less";
 import PropTypes from "prop-types";
@@ -7,18 +11,8 @@ import { checkJWT } from "../../../../store/actions";
 import { useDispatch } from "react-redux";
 import SignOut from "../../../auth/SignOut";
 import InputIcon from "@material-ui/icons/Input";
-function Copyright() {
-  return (
-    <Typography variant="body2" color="secondary" align="center">
-      {'Copyright © '}
-      <Link color="secondary" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from "../../Copyright";
+import Loader from "../../Loader/Loader";
 
 const AppBaseScreen = (props) => {
   const {
@@ -42,25 +36,24 @@ const AppBaseScreen = (props) => {
           <Toolbar>
             <Logo />
             {toolbarLeftItem}
-            <div style={{ flexGrow: 1 }}>
-              {toolbarRightItem}
-             
-            </div>
-             <SignOut>
-                <IconButton color="inherit">
-                  <InputIcon  color="secondary"/>
-                </IconButton>
-              </SignOut>
+            <div style={{ flexGrow: 1 }}>{toolbarRightItem}</div>
+            <SignOut>
+              <IconButton color="inherit">
+                <InputIcon color="secondary" />
+              </IconButton>
+            </SignOut>
           </Toolbar>
         </AppBar>
       )}
-      <div className="body">{children}</div>
+      <div className="body">
+        <Loader />
+        {children}
+      </div>
       {/*    Footer sett*/}
       <div className="footer">
         {footerItems && footerItems}
-        <Copyright/>
+        <Copyright />
       </div>
-      
     </React.Fragment>
   );
 };

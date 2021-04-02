@@ -13,7 +13,7 @@ const Logo = (props) => {
     <img
       alt="Logo"
       src={logo}
-      className={cls.root}
+      className={props.size||cls.root}
       onClick={()=> History.push("/")}
       {...props}
     />

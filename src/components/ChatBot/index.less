@@ -54,20 +54,36 @@
             }
         }
     }
+    .MuiFormControl-fullWidth {
+    width: 64%;
 }
-
+}
+.MuiCardHeader-content{
+    flex: 0.9 !important;
+}
 .theme-demo{
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin-right: 5px;
 }
-
 .fab-custom {
     position: fixed !important;
-    right: 25px;
-    bottom: 25px;
+    right: 2%;
+    bottom: 10%;
 }
+@media @phone{
+.fab-custom {
+    position: fixed !important;
+    right: 4%;
+    bottom: 10%;
+}
+}
+
+
+.MuiTypography-root{
+        text-transform: capitalize;
+    } 
 .theme-default{
     background-color: @secondary-color-100;
 }
@@ -82,3 +98,19 @@ background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-2
 background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.header-default{
+    background-color: @primary-color-100 !important;
+    .MuiTypography-root{
+        color: #fff;
+    }
+    .MuiCardHeader-action{
+        .MuiIconButton-root{
+            .MuiSvgIcon-root{
+                color: #fff
+            }
+        }
+    }
+}
+
+   

@@ -17,7 +17,7 @@ export default function AdminBaseComponent(props) {
       <AppBar color="secondary" position="relative">
         <Toolbar>
           {icon}
-          <Typography color="textSecondary">{title}</Typography>
+          <Typography color="primary">{title}</Typography>
           <div className="header-right">{rightComponents}</div>
         </Toolbar>
       </AppBar>

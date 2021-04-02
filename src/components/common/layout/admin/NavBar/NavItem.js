@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   item: {
     display: 'flex',
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   button: {
     color: theme.palette.text.secondary,
@@ -32,13 +32,18 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.light
   },
   active: {
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     '& $title': {
-      fontWeight: theme.typography.fontWeightBold
+      fontWeight: theme.typography.fontWeightBold,
+      color:'#fff'
     },
     '& $icon': {
-      color: theme.palette.primary.main
+      color: '#fff'
+    },
+    '&:hover':{
+       backgroundColor: theme.palette.primary.light,
     }
+
   }
 }));
 

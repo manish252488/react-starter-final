@@ -86,6 +86,7 @@ export default function ChatBot(props) {
         <MessageOutlined color="secondary" />
       </Fab>
       <Popover
+      draggable={true}
         className="menu-card"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -115,6 +116,7 @@ export default function ChatBot(props) {
               </>
             }
             title=""
+            className={`header-${theme}`}
             subheader="active"
           />
 

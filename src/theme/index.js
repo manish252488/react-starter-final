@@ -18,14 +18,14 @@ const raleway = {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#4CA1AF",
+      main: "#16222a",
     },
-    secondary: {
-      main: "#C4E0E5",
+    secondary:{
+    main:"#fff",
     },
     text: {
       primary: "#111",
-      secondary: "#333",
+      secondary: "#ddd",
     },
   },
   typography: {
