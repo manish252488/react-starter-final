@@ -18,7 +18,9 @@ import Logo from "../../Logo";
 import SignOut from "../../../auth/SignOut";
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    width: '85%'
+  },
   avatar: {
     width: 60,
     height: 60,

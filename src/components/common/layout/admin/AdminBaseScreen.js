@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden',
-    paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 256
     }
   },
   contentContainer: {
+    paddingTop: '64px',
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden'
@@ -49,12 +49,12 @@ const AdminBaseScreen = (props) => {
   }
   return (
     <div className={classes.root}>
-      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
       <NavBar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
       />
       <div className={classes.wrapper}>
+         <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             {props?.children}
