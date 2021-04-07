@@ -58,7 +58,6 @@ const AdminBaseScreen = (props) => {
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             {props?.children}
-            {console.log(props.children)}
           </div>
         </div>
       </div>

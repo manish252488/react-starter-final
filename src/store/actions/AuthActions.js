@@ -4,6 +4,7 @@ import { isFunction } from "../../config/Utils";
 export const signUp = (data, onSuccess, onFailure) => (dispatch) => {
   Auth.signup(data)
     .then((data) => {
+      if(data.code === 200){
       dispatch({
         type: SET_USER,
         payload: data.data,
@@ -11,9 +12,11 @@ export const signUp = (data, onSuccess, onFailure) => (dispatch) => {
       if (isFunction(onSuccess)) {
         onSuccess()
       }
+    }else {
+      if (isFunction(onFailure)) onFailure(data.message);
+    }
     })
     .catch((err) => {
-      console.log("error sign up", err);
       if (isFunction(onFailure)) onFailure(err.message);
     });
 };
@@ -34,8 +37,7 @@ export const login = (
       });
     })
     .catch((err) => {
-      console.log("error sign up", err);
-      if (isFunction(onFailure)) onFailure(err.message);
+        if (isFunction(onFailure)) onFailure("Please sign up before login/ try again later!");
     });
 };
 
@@ -49,7 +51,6 @@ export const checkJWT = (onSuccess, onFailure) => (dispatch) => {
       if (isFunction(onSuccess)) onSuccess();
     })
     .catch((err) => {
-      console.log("error sign up", err);
       if (isFunction(onFailure)) onFailure(err.message);
     });
 };
@@ -63,7 +64,6 @@ export const signOut = (onSuccess, onFailure) => (dispatch) => {
       if (isFunction(onSuccess)) onSuccess();
     })
     .catch((err) => {
-      console.log("error sign up", err);
       if (isFunction(onFailure)) onFailure(err.message);
     });
 };

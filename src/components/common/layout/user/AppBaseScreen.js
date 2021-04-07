@@ -13,7 +13,7 @@ import SignOut from "../../../auth/SignOut";
 import InputIcon from "@material-ui/icons/Input";
 import Copyright from "../../Copyright";
 import Loader from "../../Loader/Loader";
-
+import History from '../../../../@history';
 const AppBaseScreen = (props) => {
   const {
     children,

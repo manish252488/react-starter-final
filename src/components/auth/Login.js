@@ -13,6 +13,7 @@ import * as actions from "../../store/actions";
 import History from "../../@history";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
+import constants from "../../config/constants";
 const Login = (props) => {
   const [email, changeEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +62,8 @@ const Login = (props) => {
     }
   };
   const socialLogin = (data, source = "facebook" || "google") => {
-    console.log("google login data ", data);
+    if (source === "google")
+      dispatch(actions.login({ email: data.profileObj.email, password: data.profileObj.googleId }, onSuccess, onFailure))
   };
   return (
     <div className="loginPanel">
@@ -97,21 +99,21 @@ const Login = (props) => {
       </Button>
 
       <Grid container>
-        <Grid item xs>
+        <Grid itemxs>
           <Link href="#" color="primary" variant="body2">
             Forgot password?
           </Link>
         </Grid>
       </Grid>
-      <Grid container xs={12} justify="center" className="or-divider">
+      <Grid container justify="center" className="or-divider">
         <Grid item xs={1}>
-          <Typography color="primary" variant="h6 ">OR</Typography>
+          <Typography color="primary">OR</Typography>
         </Grid>
       </Grid>
-      <Grid container xs={12} justify="center">
-        <Grid item justify="center" xs={6}>
+      <Grid container  justify="center">
+        <Grid item xs={6}>
           <GoogleLogin
-            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+            clientId={constants.google_client_id}
             buttonText="Login with Google"
             onSuccess={(data) => socialLogin(data, "google")}
             onFailure={(err) => onFailure(err.message)}
@@ -121,7 +123,7 @@ const Login = (props) => {
         </Grid>
         <Grid item >
           <FacebookLogin
-            appId="1088597931155576"
+            appId={constants.facebook_app_id}
             autoLoad={false}
             fields="name,email,picture"
             cssClass="facebook-button"

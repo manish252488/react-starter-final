@@ -118,7 +118,8 @@ class SignUp extends React.Component {
         password: user.password1,
         email: user.email,
         roleId: 1,
-        source: "form",
+        source: this.state.user.source || "form",
+        picture: this.state?.picture
       };
       this.props.register(data, this.onSuccess, this.onFailure);
     } else {
@@ -129,7 +130,20 @@ class SignUp extends React.Component {
     this.setState({checked: e.target.checked})
   }
   socialRegister = (data, type = "facebook"||"google") =>{
-    console.log(data)
+    if(type === "google"){
+      this.setState({
+        user: {
+          name: data.profileObj.givenName + data.profileObj.familyName,
+          email: data.profileObj.email,
+          password1: data.profileObj.googleId + data.profileObj.email,
+          password2: data.profileObj.googleId +data.profileObj.email,
+          picture: data.profileObj.imageUrl,
+          source: 'google'
+
+        }
+      })
+    }
+    this.register();
   }
   render() {
     const { user, errors, loading,checked } = this.state;
@@ -190,13 +204,13 @@ class SignUp extends React.Component {
         >
           Register
         </Button>
-          <Grid container xs={12} justify="center" className="or-divider">
+          <Grid container justify="center" className="or-divider">
         <Grid item xs={1}>
-          <Typography color="primary" variant="h6 ">OR</Typography>
+          <Typography color="primary">OR</Typography>
         </Grid>
       </Grid>
-      <Grid container xs={12} justify="center">
-        <Grid item justify="center" xs={6}>
+      <Grid container justify="center">
+        <Grid item xs={6}>
           <GoogleLogin
             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
             buttonText="Login with Google"
