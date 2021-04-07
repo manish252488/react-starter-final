@@ -3,6 +3,7 @@ import {
   Checkbox,
   CircularProgress,
   FormControlLabel,
+  Grid,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -12,6 +13,8 @@ import { bindActionCreators } from "redux";
 import History from "../../@history";
 import { signUp } from "../../store/actions";
 import "./index.less";
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 /**
  * 
  *  "name": "manish singh",
@@ -125,6 +128,9 @@ class SignUp extends React.Component {
   handleChangeCheckbox = (e) => {
     this.setState({checked: e.target.checked})
   }
+  socialRegister = (data, type = "facebook"||"google") =>{
+    console.log(data)
+  }
   render() {
     const { user, errors, loading,checked } = this.state;
     return (
@@ -184,6 +190,33 @@ class SignUp extends React.Component {
         >
           Register
         </Button>
+          <Grid container xs={12} justify="center" className="or-divider">
+        <Grid item xs={1}>
+          <Typography color="primary" variant="h6 ">OR</Typography>
+        </Grid>
+      </Grid>
+      <Grid container xs={12} justify="center">
+        <Grid item justify="center" xs={6}>
+          <GoogleLogin
+            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={(data) => this.socialRegister(data, "google")}
+            onFailure={(err) => this.onFailure(err.message)}
+            cookiePolicy={"single_host_origin"}
+            autoLoad={false}
+          />
+        </Grid>
+        <Grid item >
+          <FacebookLogin
+            appId="1088597931155576"
+            autoLoad={false}
+            fields="name,email,picture"
+            cssClass="facebook-button"
+            icon="fa-facebook"
+            callback={(data) => this.socialRegister(data, "facebook")}
+          />
+        </Grid>
+        </Grid>
       </div>
     );
   }

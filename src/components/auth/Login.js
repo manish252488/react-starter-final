@@ -4,13 +4,15 @@ import {
   Grid,
   TextField,
   Typography,
-  Link
+  Link,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./index.less";
 import * as actions from "../../store/actions";
 import History from "../../@history";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
 const Login = (props) => {
   const [email, changeEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,6 +60,9 @@ const Login = (props) => {
       );
     }
   };
+  const socialLogin = (data, source = "facebook" || "google") => {
+    console.log("google login data ", data);
+  };
   return (
     <div className="loginPanel">
       <Typography color="error">{error}</Typography>
@@ -96,6 +101,33 @@ const Login = (props) => {
           <Link href="#" color="primary" variant="body2">
             Forgot password?
           </Link>
+        </Grid>
+      </Grid>
+      <Grid container xs={12} justify="center" className="or-divider">
+        <Grid item xs={1}>
+          <Typography color="primary" variant="h6 ">OR</Typography>
+        </Grid>
+      </Grid>
+      <Grid container xs={12} justify="center">
+        <Grid item justify="center" xs={6}>
+          <GoogleLogin
+            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={(data) => socialLogin(data, "google")}
+            onFailure={(err) => onFailure(err.message)}
+            cookiePolicy={"single_host_origin"}
+            autoLoad={false}
+          />
+        </Grid>
+        <Grid item >
+          <FacebookLogin
+            appId="1088597931155576"
+            autoLoad={false}
+            fields="name,email,picture"
+            cssClass="facebook-button"
+            icon="fa-facebook"
+            callback={(data) => socialLogin(data, "facebook")}
+          />
         </Grid>
       </Grid>
     </div>
