@@ -22,7 +22,7 @@ export default function Users(props){
             let temp = {...data}
             temp.createdDate = moment(data.createdDate).format('MMMM Do YYYY, h:mm:ss a')
             temp.updatedDate = moment(data.updatedDate).format('MMMM Do YYYY, h:mm:ss a')
-            temp.status = data.status===0? <Chip avatar={<Avatar>😔</Avatar>} label="In-Active" color="primary"/>:<Chip avatar={<Avatar>😃</Avatar>} label="Active" color="secondary"/>
+            temp.status = data.status===0? <Chip avatar={<Avatar>😔</Avatar>} label="In-Active" color="secondary"/>:<Chip avatar={<Avatar>😃</Avatar>} label="Active" color="primary"/>
             obj.push(temp)
         })
         return obj;
