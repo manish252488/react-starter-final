@@ -5,9 +5,14 @@ export const signUp = (data, onSuccess, onFailure) => (dispatch) => {
   Auth.signup(data)
     .then((data) => {
       if(data.code === 200){
+        let new_data = {
+          user: {...data.data},
+          token: data.data.token
+        }
+        delete new_data.user.token;
       dispatch({
         type: SET_USER,
-        payload: data.data,
+        payload: new_data,
       });
       if (isFunction(onSuccess)) {
         onSuccess()
@@ -28,14 +33,25 @@ export const login = (
 ) => (dispatch) => {
   Auth.login(data)
     .then((data) => {
-      if (isFunction(onSuccess)) {
+      if(data.code === 200){
+        if (isFunction(onSuccess)) {
         onSuccess();
       }
+      let new_data = {
+          user: {...data.data},
+          token: data.data.token
+        }
+        delete new_data.user.token;
       dispatch({
         type: SET_USER,
-        payload: data.data,
+        payload: new_data,
       });
+    
+      }else{
+        if (isFunction(onFailure)) onFailure(data.message);
+      }
     })
+      
     .catch((err) => {
         if (isFunction(onFailure)) onFailure("Please sign up before login/ try again later!");
     });
@@ -44,9 +60,13 @@ export const login = (
 export const checkJWT = (onSuccess, onFailure) => (dispatch) => {
   Auth.checkAuth()
     .then((data) => {
+      let new_data = {
+          user: {...data.data},
+        }
+        delete new_data.user.token;
       dispatch({
         type: SET_USER,
-        payload: data.data,
+        payload: new_data,
       });
       if (isFunction(onSuccess)) onSuccess();
     })

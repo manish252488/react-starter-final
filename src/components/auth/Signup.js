@@ -34,6 +34,7 @@ class SignUp extends React.Component {
         email: "",
         password1: "",
         password2: "",
+        picture: null
       },
       errors: {
         main: "",
@@ -119,7 +120,7 @@ class SignUp extends React.Component {
         email: user.email,
         roleId: 1,
         source: this.state.user.source || "form",
-        picture: this.state?.picture
+        picture: this.state.user.picture?this.state.user.picture:null
       };
       this.props.register(data, this.onSuccess, this.onFailure);
     } else {
@@ -133,13 +134,12 @@ class SignUp extends React.Component {
     if(type === "google"){
       this.setState({
         user: {
-          name: data.profileObj.givenName + data.profileObj.familyName,
+          name: data.profileObj.givenName +" "+ data.profileObj.familyName,
           email: data.profileObj.email,
-          password1: data.profileObj.googleId + data.profileObj.email,
-          password2: data.profileObj.googleId +data.profileObj.email,
+          password1: data.profileObj.googleId ,
+          password2: data.profileObj.googleId ,
           picture: data.profileObj.imageUrl,
           source: 'google'
-
         }
       })
     }

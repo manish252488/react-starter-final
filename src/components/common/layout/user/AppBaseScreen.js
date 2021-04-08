@@ -3,7 +3,7 @@ import {
   IconButton,
   Toolbar,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.less";
 import PropTypes from "prop-types";
 import Logo from "../../Logo";
@@ -14,7 +14,10 @@ import InputIcon from "@material-ui/icons/Input";
 import Copyright from "../../Copyright";
 import Loader from "../../Loader/Loader";
 import History from '../../../../@history';
+import NavBar from "./NavBar";
+import { MenuOpenOutlined } from "@material-ui/icons";
 const AppBaseScreen = (props) => {
+   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   const {
     children,
     footerItems,
@@ -34,6 +37,9 @@ const AppBaseScreen = (props) => {
       {showHeader && (
         <AppBar>
           <Toolbar>
+            <IconButton lgUp>
+              <MenuOpenOutlined color="secondary" size={24}/>
+            </IconButton>
             <Logo />
             {toolbarLeftItem}
             <div style={{ flexGrow: 1 }}>{toolbarRightItem}</div>
@@ -45,6 +51,10 @@ const AppBaseScreen = (props) => {
           </Toolbar>
         </AppBar>
       )}
+      <NavBar
+        onMobileClose={() => setMobileNavOpen(false)}
+        openMobile={isMobileNavOpen}
+      />
       <div className="body">
         <Loader />
         {children}
