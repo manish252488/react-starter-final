@@ -1,8 +1,4 @@
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-} from "@material-ui/core";
+import { AppBar, Hidden, IconButton, Toolbar } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "../index.less";
 import PropTypes from "prop-types";
@@ -13,11 +9,11 @@ import SignOut from "../../../auth/SignOut";
 import InputIcon from "@material-ui/icons/Input";
 import Copyright from "../../Copyright";
 import Loader from "../../Loader/Loader";
-import History from '../../../../@history';
+import History from "../../../../@history";
 import NavBar from "./NavBar";
 import { MenuOpenOutlined } from "@material-ui/icons";
 const AppBaseScreen = (props) => {
-   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   const {
     children,
     footerItems,
@@ -37,9 +33,11 @@ const AppBaseScreen = (props) => {
       {showHeader && (
         <AppBar>
           <Toolbar>
-            <IconButton lgUp>
-              <MenuOpenOutlined color="secondary" size={24}/>
-            </IconButton>
+            <Hidden lgUp>
+              <IconButton onClick={() => setMobileNavOpen(true)} lgUp>
+                <MenuOpenOutlined color="secondary" />
+              </IconButton>
+            </Hidden>
             <Logo />
             {toolbarLeftItem}
             <div style={{ flexGrow: 1 }}>{toolbarRightItem}</div>

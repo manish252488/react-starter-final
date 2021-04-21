@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import './index.less';
+import "./index.less";
 import {
   Avatar,
   Box,
@@ -13,32 +13,57 @@ import {
 } from "@material-ui/core";
 import NavItem from "./NavItem";
 import { useSelector } from "react-redux";
-import {Logo} from '../../../../../assets';
-import Copyright from "../../../Copyright";
-import { NotesOutlined, PeopleOutline } from "@material-ui/icons";
+import { Logo } from "../../../../../assets";
+import {
+  Cloud,
+  Description,
+  Help,
+  Image,
+  ListAlt,
+  LiveHelp,
+} from "@material-ui/icons";
 
 const items = [
-
   {
-    href: "/admin/users",
-    icon: PeopleOutline,
-    title: "Users",
+    href: "/home/all",
+    icon: ListAlt,
+    title: "All",
   },
   {
-    href: '/admin/transactions',
-    icon: NotesOutlined,
-    title: 'Transactions'
-  }
-]
+    href: "/home/documents",
+    icon: Description,
+    title: "Documents",
+  },
+  {
+    href: "/home/images",
+    icon: Image,
+    title: "Images",
+  },
+  {
+    href: "/home/drive",
+    icon: Cloud,
+    title: "Drive Attachments",
+  },
+  {
+    href: "/home/help",
+    icon: Help,
+    title: "Help",
+  },
+  {
+    href: "/home/faq",
+    icon: LiveHelp,
+    title: "faq",
+  },
+];
 
 const NavBar = ({ onMobileClose, openMobile }) => {
-  const auth = useSelector(({Auth})=>Auth);
+  const auth = useSelector(({ Auth }) => Auth);
   const user = {
-  avatar: auth.user.picture || Logo,
-  jobTitle: auth.role,
-  name: auth.user?.name,
-  email: auth.user?.email
-};
+    avatar: auth.user.picture || Logo,
+    jobTitle: auth.role,
+    name: auth.user?.name,
+    email: auth.user?.email,
+  };
   const location = useLocation();
 
   useEffect(() => {
@@ -49,8 +74,19 @@ const NavBar = ({ onMobileClose, openMobile }) => {
   }, [location.pathname]);
 
   const content = (
-    <Box className="navbar-root" height="100%" display="flex" flexDirection="column">
-      <Box className="navbar-box-1" alignItems="center" display="flex" flexDirection="column" p={2}>
+    <Box
+      className="navbar-root"
+      height="100%"
+      display="flex"
+      flexDirection="column"
+    >
+      <Box
+        className="navbar-box-1"
+        alignItems="center"
+        display="flex"
+        flexDirection="column"
+        p={2}
+      >
         <Avatar
           className="nav-avatar"
           component={RouterLink}
@@ -66,7 +102,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         <Typography color="textSecondary" variant="body2">
           {user.jobTitle}
         </Typography>
-        
       </Box>
       <Divider />
       <Box className="navbar-box-2" p={2}>
@@ -82,7 +117,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </List>
       </Box>
       <Box flexGrow={1} />
-      <Copyright color="primary"/>
     </Box>
   );
 
@@ -100,12 +134,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </Drawer>
       </Hidden>
       <Hidden mdDown>
-        <Drawer
-          anchor="left"
-          classes="nav-drawer"
-          open
-          variant="persistent"
-        >
+        <Drawer anchor="left" classes="nav-drawer" open variant="persistent">
           {content}
         </Drawer>
       </Hidden>

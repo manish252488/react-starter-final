@@ -13,8 +13,7 @@ import { bindActionCreators } from "redux";
 import History from "../../@history";
 import { signUp } from "../../store/actions";
 import "./index.less";
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from "react-google-login";
 /**
  * 
  *  "name": "manish singh",
@@ -34,7 +33,7 @@ class SignUp extends React.Component {
         email: "",
         password1: "",
         password2: "",
-        picture: null
+        picture: null,
       },
       errors: {
         main: "",
@@ -44,7 +43,7 @@ class SignUp extends React.Component {
         password2: "",
       },
       loading: false,
-      checked: false
+      checked: false,
     };
   }
   onChange = (key, value) => {
@@ -120,7 +119,7 @@ class SignUp extends React.Component {
         email: user.email,
         roleId: 1,
         source: this.state.user.source || "form",
-        picture: this.state.user.picture?this.state.user.picture:null
+        picture: this.state.user.picture ? this.state.user.picture : null,
       };
       this.props.register(data, this.onSuccess, this.onFailure);
     } else {
@@ -128,25 +127,25 @@ class SignUp extends React.Component {
     }
   };
   handleChangeCheckbox = (e) => {
-    this.setState({checked: e.target.checked})
-  }
-  socialRegister = (data, type = "facebook"||"google") =>{
-    if(type === "google"){
+    this.setState({ checked: e.target.checked });
+  };
+  socialRegister = (data, type = "facebook" || "google") => {
+    if (type === "google") {
       this.setState({
         user: {
-          name: data.profileObj.givenName +" "+ data.profileObj.familyName,
+          name: data.profileObj.givenName + " " + data.profileObj.familyName,
           email: data.profileObj.email,
-          password1: data.profileObj.googleId ,
-          password2: data.profileObj.googleId ,
+          password1: data.profileObj.googleId,
+          password2: data.profileObj.googleId,
           picture: data.profileObj.imageUrl,
-          source: 'google'
-        }
-      })
+          source: "google",
+        },
+      });
     }
     this.register();
-  }
+  };
   render() {
-    const { user, errors, loading,checked } = this.state;
+    const { user, errors, loading, checked } = this.state;
     return (
       <div className="signup-form">
         <Typography color="error">{errors.main}</Typography>
@@ -189,7 +188,12 @@ class SignUp extends React.Component {
           helperText={errors.password2}
         />
         <FormControlLabel
-          control={<Checkbox  defaultChecked={checked} onChange={this.handleChangeCheckbox}/>}
+          control={
+            <Checkbox
+              defaultChecked={checked}
+              onChange={this.handleChangeCheckbox}
+            />
+          }
           label="I want to receive inspiration, marketing promotions and updates via email."
         />
         <Button
@@ -204,32 +208,22 @@ class SignUp extends React.Component {
         >
           Register
         </Button>
-          <Grid container justify="center" className="or-divider">
-        <Grid item xs={1}>
-          <Typography color="primary">OR</Typography>
+        <Grid container justify="center" className="or-divider">
+          <Grid item xs={1}>
+            <Typography color="primary">OR</Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container justify="center">
-        <Grid item xs={6}>
-          <GoogleLogin
-            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={(data) => this.socialRegister(data, "google")}
-            onFailure={(err) => this.onFailure(err.message)}
-            cookiePolicy={"single_host_origin"}
-            autoLoad={false}
-          />
-        </Grid>
-        <Grid item >
-          <FacebookLogin
-            appId="1088597931155576"
-            autoLoad={false}
-            fields="name,email,picture"
-            cssClass="facebook-button"
-            icon="fa-facebook"
-            callback={(data) => this.socialRegister(data, "facebook")}
-          />
-        </Grid>
+        <Grid container justify="center">
+          <Grid item xs={8}>
+            <GoogleLogin
+              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              buttonText="Login with Google"
+              onSuccess={(data) => this.socialRegister(data, "google")}
+              onFailure={(err) => this.onFailure(err.message)}
+              cookiePolicy={"single_host_origin"}
+              autoLoad={false}
+            />
+          </Grid>
         </Grid>
       </div>
     );

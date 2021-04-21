@@ -12,7 +12,6 @@ import "./index.less";
 import * as actions from "../../store/actions";
 import History from "../../@history";
 import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import constants from "../../config/constants";
 const Login = (props) => {
   const [email, changeEmail] = useState("");
@@ -63,7 +62,13 @@ const Login = (props) => {
   };
   const socialLogin = (data, source = "facebook" || "google") => {
     if (source === "google")
-      dispatch(actions.login({ email: data.profileObj.email, password: data.profileObj.googleId }, onSuccess, onFailure))
+      dispatch(
+        actions.login(
+          { email: data.profileObj.email, password: data.profileObj.googleId },
+          onSuccess,
+          onFailure
+        )
+      );
   };
   return (
     <div className="loginPanel">
@@ -110,8 +115,8 @@ const Login = (props) => {
           <Typography color="primary">OR</Typography>
         </Grid>
       </Grid>
-      <Grid container  justify="center">
-        <Grid item xs={6}>
+      <Grid container justify="center">
+        <Grid item xs={8}>
           <GoogleLogin
             clientId={constants.google_client_id}
             buttonText="Login with Google"
@@ -119,16 +124,6 @@ const Login = (props) => {
             onFailure={(err) => onFailure(err.message)}
             cookiePolicy={"single_host_origin"}
             autoLoad={false}
-          />
-        </Grid>
-        <Grid item >
-          <FacebookLogin
-            appId={constants.facebook_app_id}
-            autoLoad={false}
-            fields="name,email,picture"
-            cssClass="facebook-button"
-            icon="fa-facebook"
-            callback={(data) => socialLogin(data, "facebook")}
           />
         </Grid>
       </Grid>

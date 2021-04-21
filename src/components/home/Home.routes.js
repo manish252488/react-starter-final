@@ -6,12 +6,17 @@ const HomeRoutes = {
   routes: [
     {
       path: "/home",
+      component: () => <Redirect to="/home/documents" />,
+      exact: true,
+    },
+    {
+      path: "/home/:screen",
       component: Home,
       exact: true,
     },
     {
       path: "/",
-      component: () => <Redirect to="/home" />,
+      component: () => <Redirect to="/home/documents" />,
       exact: true,
     },
   ],

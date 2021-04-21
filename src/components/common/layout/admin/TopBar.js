@@ -19,7 +19,7 @@ import SignOut from "../../../auth/SignOut";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '85%'
+    width: "100%",
   },
   avatar: {
     width: 60,
@@ -39,22 +39,18 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
         </RouterLink>
         <Box flexGrow={1} />
         <IconButton color="inherit">
-          <Badge
-            badgeContent={1}
-            color="secondary"
-            variant="dot"
-          >
-            <NotificationsIcon color="secondary"/>
+          <Badge badgeContent={1} color="secondary" variant="dot">
+            <NotificationsIcon color="secondary" />
           </Badge>
         </IconButton>
         <SignOut>
           <IconButton color="inherit">
-            <InputIcon color="secondary"/>
+            <InputIcon color="secondary" />
           </IconButton>
         </SignOut>
         <Hidden lgUp>
           <IconButton color="inherit" onClick={onMobileNavOpen}>
-            <MenuIcon color="secondary"/>
+            <MenuIcon color="secondary" />
           </IconButton>
         </Hidden>
       </Toolbar>
