@@ -13,6 +13,7 @@ import * as actions from "../../store/actions";
 import History from "../../@history";
 import GoogleLogin from "react-google-login";
 import constants from "../../config/constants";
+import { setMailAccount } from "../../store/actions";
 const Login = (props) => {
   const [email, changeEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +62,7 @@ const Login = (props) => {
     }
   };
   const socialLogin = (data, source = "facebook" || "google") => {
-    if (source === "google")
+    if (source === "google") {
       dispatch(
         actions.login(
           { email: data.profileObj.email, password: data.profileObj.googleId },
@@ -69,6 +70,8 @@ const Login = (props) => {
           onFailure
         )
       );
+      dispatch(setMailAccount(data.tokenObj));
+    }
   };
   return (
     <div className="loginPanel">
@@ -124,6 +127,9 @@ const Login = (props) => {
             onFailure={(err) => onFailure(err.message)}
             cookiePolicy={"single_host_origin"}
             autoLoad={false}
+            prompt={"select_account"}
+            discoveryDocs="https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"
+            scope="https://www.googleapis.com/auth/gmail.readonly"
           />
         </Grid>
       </Grid>

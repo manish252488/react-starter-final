@@ -11,9 +11,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import History from "../../@history";
-import { signUp } from "../../store/actions";
+import { setMailAccount, signUp } from "../../store/actions";
 import "./index.less";
 import GoogleLogin from "react-google-login";
+import constants from "../../config/constants";
 /**
  * 
  *  "name": "manish singh",
@@ -142,6 +143,7 @@ class SignUp extends React.Component {
         },
       });
     }
+    this.props.setMailAccount(data.tokenObj);
     this.register();
   };
   render() {
@@ -216,8 +218,11 @@ class SignUp extends React.Component {
         <Grid container justify="center">
           <Grid item xs={8}>
             <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              clientId={constants.google_client_id}
               buttonText="Login with Google"
+              prompt={"select_account"}
+              discoveryDocs="https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"
+              scope="https://www.googleapis.com/auth/gmail.readonly"
               onSuccess={(data) => this.socialRegister(data, "google")}
               onFailure={(err) => this.onFailure(err.message)}
               cookiePolicy={"single_host_origin"}
@@ -232,5 +237,6 @@ class SignUp extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   register: bindActionCreators(signUp, dispatch),
+  setMailAccount: bindActionCreators(setMailAccount, dispatch),
 });
 export default connect(null, mapDispatchToProps)(SignUp);
