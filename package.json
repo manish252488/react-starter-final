@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.1",
+    "base64-buffer-thumbnail": "^1.0.0",
     "customize-cra": "^1.0.0",
     "highcharts": "^8.2.2",
     "i18next": "^19.9.2",

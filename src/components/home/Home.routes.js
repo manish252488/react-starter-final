@@ -16,7 +16,7 @@ const HomeRoutes = {
     },
     {
       path: "/",
-      component: () => <Redirect to="/home/documents" />,
+      component: () => <Redirect to="/home/all" />,
       exact: true,
     },
   ],

@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
   heavyFont: {
     fontWeight: 700,
+    fontSize: 12,
+    maxWidth: 130,
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     color: theme.palette.primary.main,
   },
 }));
