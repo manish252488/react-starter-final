@@ -3,14 +3,14 @@ import {
   CardContent,
   CardHeader,
   Grid,
-  IconButton,
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { MoreVert } from "@material-ui/icons";
+import { GetApp } from "@material-ui/icons";
 import React from "react";
 import PropTypes from "prop-types";
 import "./index.less";
+import Base64Downloader from "react-base64-downloader";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 200,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
 }));
-function HeaderComponent({ title }) {
+function HeaderComponent({ title, imageLink }) {
   const classes = useStyles();
   return (
     <Grid container justify="space-between">
@@ -60,9 +60,14 @@ function HeaderComponent({ title }) {
         </Typography>
       </Grid>
       <Grid item>
-        <IconButton aria-label="settings">
-          <MoreVert />
-        </IconButton>
+        <Base64Downloader
+          base64={imageLink}
+          downloadName={title}
+          onDownloadSuccess={() => console.log("File download initiated")}
+          onDownloadError={() => console.warn("Download failed to start")}
+        >
+          <GetApp />
+        </Base64Downloader>
       </Grid>
     </Grid>
   );
@@ -74,10 +79,7 @@ export default function FileThumbnail(props) {
     <Card className={classes.root + " fileContainer"}>
       <CardHeader component={() => <HeaderComponent title={props.title} />} />
       <CardContent className={classes.container}>
-        <div
-          className={classes.imageContainer}
-          style={{ backgroundImage: `url(${props.imageLink})` }}
-        ></div>
+        <img style={{ width: 50 }} src={props.imageLink} />
       </CardContent>
     </Card>
   );
